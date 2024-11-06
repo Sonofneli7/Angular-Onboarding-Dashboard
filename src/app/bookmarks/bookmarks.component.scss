@@ -1,0 +1,15 @@
+.bookmarks-wrapper {
+    height: 100%;
+
+    overflow-y: auto;
+    
+}
+
+
+.bookmark-tiles-container{
+    display: flex;  // making bookmark tiles horizontal to each other
+    gap: 20px; // add spacing between
+    justify-content: center;
+
+    flex-wrap: wrap;
+    }
