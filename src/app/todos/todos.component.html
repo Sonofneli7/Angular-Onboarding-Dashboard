@@ -1,16 +1,21 @@
 <div class="todos-wrapper">
   <div class="container">
-    <div class="todo-item">
-      <div class="check-box">
-        <i class="material-symbols-outlined">check</i>
-      </div>
-      <p class="todo-text"> This is the todo text!</p>
+
+    <!-- add animation for when item leaves U.I. -->
+    <app-todo-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (click)="toggleCompleted(todo)"
+      (editClick)="onEditClick(todo)"
+      (deleteClick)="onDeleteClick(todo)">
+      </app-todo-item>
+
+
+    <div class="btns-container btns-centered">
+      <a routerLink="add" class="btn add-btn">
+        <i class="material-symbols-outlined">add</i> Add
+      </a>
     </div>
-    <div class="todo-item">
-        <div class="check-box">
-          <i class="material-symbols-outlined">check</i>
-        </div>
-        <p class="todo-text"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque, quos temporibus, culpa animi nulla sunt odit quo deserunt suscipit tempore ducimus aliquam perspiciatis, aspernatur officia repellendus? Saepe dolorum perspiciatis accusantium?</p>
-      </div>
+    
   </div>
 </div>

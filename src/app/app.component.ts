@@ -1,15 +1,27 @@
 import { Component } from '@angular/core';
-import{CommonModule} from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 import { TabsComponent } from "./tabs/tabs.component";
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TabsComponent, RouterLink],
+  imports: [CommonModule, RouterOutlet, TabsComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'], // Fixed plural form
+  animations: [
+    trigger('routeAnimations', [
+      transition('* => *', [
+        style({ background: 'green' }),
+        animate(1000),
+      ]),
+    ]),
+  ],
 })
 export class AppComponent {
-  title = 'angular-onboarding-dashboard';
+  // Method to prepare route transitions
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 }

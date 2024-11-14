@@ -1,0 +1,6 @@
+<!-- app-note-card.component.html -->
+<div class="note-card">
+    <div class="note-card-title">{{ note?.title }}</div>
+    <div class="note-card-content" *ngIf="note && note.content">{{ note.content }}</div>
+  </div>
+  

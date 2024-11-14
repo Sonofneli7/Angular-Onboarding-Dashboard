@@ -6,11 +6,10 @@ import { BookmarkTileComponent } from "../bookmark-tile/bookmark-tile.component"
   standalone: true,
   imports: [BookmarkTileComponent],
   templateUrl: './bookmarks.component.html',
-  styleUrl: './bookmarks.component.scss'
+  styleUrls: ['./bookmarks.component.scss']  // Corrected here
 })
-export class BookmarksComponent {
+export class BookmarksComponent {}
 
-}
 
 
 // ng s -o   Opens application automatically
