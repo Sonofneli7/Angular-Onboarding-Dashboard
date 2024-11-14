@@ -1,8 +1,10 @@
+
 .app-wrapper{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+
     height: 100%;
-    // background image settings for home page
+
     background-image: url('https://w0.peakpx.com/wallpaper/936/399/HD-wallpaper-logic-circuit-computer-cpu-tech-technology.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -11,40 +13,34 @@
 }
 
 .top-section{
-   // background: aquamarine;
+    //background-color: aquamarine;
     text-align: center;
-    padding: 100px 0px;
+    padding: 100px 0;
 
     h1{
         font-size: 120px;
-        font-weight: bold;
-        color: white;
-        text-shadow: 0px 1px 4px rgba($color: black, $alpha: 0.1);
+        font-weight: bold; 
+        color: #f5f5f5;
+        text-shadow: 0px 1px 7px rgba(0,0,0,0.5); 
+    }
 
-     }
-
-     h2{
+    h2{
         font-size: 28px;
-        color: white;
-        // horizontal, vertical, blur, color
-        text-shadow: 0px 1px 7px rgba($color: black, $alpha: 0.1);
-     }
+        color: #f5f5f5;  
+        text-shadow: 0px 1px 4px rgba(0,0,0,0.5);
+    }
+
 }
 
 .content-section{
-    //background: cadetblue;
+    //background-color: cadetblue;
     flex-grow: 1;
-    min-height: 0;
 }
 
-
 .bottom-section{
-   // background: coral;
-    display: flex;
-
-    // centering the tabs
-    app-tabs{
-        margin: auto
+    //background-color: coral;
+    display: flex;  // Align items in the center
+    app-tabs { 
+        margin: auto; 
     }
-
 }

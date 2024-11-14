@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { BookmarkTileComponent } from "../bookmark-tile/bookmark-tile.component";
 
 @Component({
   selector: 'app-bookmarks',
   standalone: true,
-  imports: [BookmarkTileComponent],
+  imports: [],
   templateUrl: './bookmarks.component.html',
-  styleUrls: ['./bookmarks.component.scss']  // Corrected here
+  styleUrl: './bookmarks.component.scss'
 })
-export class BookmarksComponent {}
+export class BookmarksComponent {
 
-
-
-// ng s -o   Opens application automatically
+}
