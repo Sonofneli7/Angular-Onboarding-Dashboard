@@ -1,10 +1,12 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';  // Import your routes
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes)  // Add routing to your app config
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    BrowserAnimationsModule // Add BrowserAnimationsModule here
   ]
 };
-

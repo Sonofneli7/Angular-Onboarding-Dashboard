@@ -1,15 +1,25 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router'; // Import RouterModule
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
-  imports: [],
+  imports: [RouterModule], // Add RouterModule here
   templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.scss'
+  styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+export class TabsComponent {
+  constructor(private router: Router) {}
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
+  // Debugging method
+  onTabClick(route: string) {
+    console.log(`Tab clicked: ${route}`);
+  }
 }
+
+// importing the RouterModule in tabs.components.ts was what was needed to properly route the tabs

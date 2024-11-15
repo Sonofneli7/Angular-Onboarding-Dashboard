@@ -1,6 +1,12 @@
-
 <div class="bookmark-tile">
-  <img src="https://google.com/favicon.ico" alt="" />
-  <p class="tile-text">Google</p>
-</div>
+  <div class="tile-icon" [ngClass]="{ fallback: faviconError }">
+    <!-- Display favicon image if no error -->
+    <img *ngIf="!faviconError" [src]="tileIconSrc" alt="Bookmark Icon" (error)="faviconError = true" />
 
+    <!-- Fallback to the first letter when favicon fails -->
+    <div *ngIf="faviconError">
+      {{ firstLetter.toUpperCase() }}
+    </div>
+  </div>
+  <p class="tile-text">{{ name }}</p>
+</div>
