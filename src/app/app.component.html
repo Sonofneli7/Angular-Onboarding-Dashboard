@@ -1,12 +1,24 @@
 <div class="app-wrapper">
-  <div class="top-section">
-    <h1>19:00</h1>
-    <h2>4 November 2024</h2>
+  <img [src]="bg" class="bg-img" alt="Background image">
+
+  <!-- Refresh button -->
+  <div class="btn change-bg-btn" (click)="changeBGImage()">
+    <i class="material-symbols-outlined">refresh</i>
   </div>
+
+  <div class="top-section">
+    <!-- <h1>19:00</h1> -->
+    <div class="top-section">
+      <h1>{{ dateTime | date: 'shortTime' }}</h1>
+      <h2>{{ dateTime | date: 'MMMM d, y' }}</h2>
+    </div>
+  </div>
+  
   <div class="content-section">
     <router-outlet></router-outlet>
     <!-- Components goes here -->
   </div>
+
   <div class="bottom-section">
     <app-tabs></app-tabs>
   </div>
@@ -14,5 +26,3 @@
   <!-- Notification of updates -->
   <app-notification></app-notification>
 </div>
-
-<!-- Quickly move line: Alt: up/down arrow, select line: ctrl, L -->

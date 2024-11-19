@@ -1,15 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Note } from '../shared/note.model';
+import { fromEvent, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NoteService {
+export class NoteService implements OnDestroy{
   notes: Note[] = [];
+ 
+  storageListenSub: Subscription | undefined
 
   constructor() {
-    //Load note state from local storage
+    // Load note state from local storage
     this.loadState();
+
+    // Listen to storage events related to notes
+    this.storageListenSub = fromEvent<StorageEvent>(window, 'storage')
+      .pipe(filter((event) => event.key === 'notes')) // Ensure we only handle events for 'notes'
+      .subscribe(() => {
+        this.loadState(); // Reload notes from storage when the 'notes' key changes
+      });
+  }
+  ngOnDestroy(): void {
+   if (this.storageListenSub) this.storageListenSub.unsubscribe();
   }
 
   // Get all notes
@@ -44,21 +58,28 @@ export class NoteService {
     const noteIndex = this.notes.findIndex((n) => n.id === id);
     if (noteIndex !== -1) {
       this.notes.splice(noteIndex, 1); // Remove the note from the array
+      this.saveState(); // Ensure state is saved after deletion
+    } else {
+      console.warn(`Note with id ${id} not found`);
     }
   }
 
-  saveState() {
+  // Save notes to local storage
+  saveState(): void {
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
-  loadState() {
+  // Load notes from local storage
+  loadState(): void {
     try {
       const notesInStorage = JSON.parse(localStorage.getItem('notes') ?? '[]');
-      if (!notesInStorage) return;
-      this.notes = notesInStorage;
+      if (Array.isArray(notesInStorage)) {
+        this.notes.length = 0; // clear the notes array (while keeping the reference)
+        this.notes.push(...notesInStorage);
+      }
     } catch (e) {
-      console.error('Failed to load notes from local storage');
-      console.error(e);
+      console.error('Failed to load notes from local storage:', e);
+      this.notes = []; // Reset to empty if there's an error
     }
   }
 }

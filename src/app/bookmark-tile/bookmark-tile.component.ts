@@ -5,31 +5,34 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-bookmark-tile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule], 
   templateUrl: './bookmark-tile.component.html',
   styleUrls: ['./bookmark-tile.component.scss']
 })
 export class BookmarkTileComponent implements OnInit {
-  @Input() bookmark: Bookmark | undefined;
+  @Input() bookmark!: { url: string; name: string }; 
 
-  tileIconSrc: string | undefined;
-  faviconError: boolean = false;
-
-  constructor() {}
+  faviconError: boolean = false; 
+  tileIconSrc: string = ''; 
+  firstLetter: string = ''; 
+  name: string = ''; 
 
   ngOnInit(): void {
-    if (this.bookmark?.url) {
-      this.tileIconSrc = this.bookmark.url.origin + '/favicon.ico';
+    if (this.bookmark) {
+      this.name = this.bookmark.name;
+      this.tileIconSrc = this.getFaviconUrl(this.bookmark.url);
+      this.firstLetter = this.name[0] || ''; 
     }
   }
 
-  // Getter to safely access the bookmark name
-  get name(): string {
-    return this.bookmark?.name || 'Unnamed Bookmark'; // Default name if undefined
+  // Construct the favicon URL based on the bookmark URL
+  getFaviconUrl(url: string): string {
+    const domain = new URL(url).origin; // Extract domain from the URL
+    return `${domain}/favicon.ico`; // Standard path for favicons
   }
 
-  // Getter to retrieve the first letter of the bookmark name
-  get firstLetter(): string {
-    return this.name.charAt(0).toUpperCase(); // Get the first letter and convert it to uppercase
+  // Handle favicon load error
+  onFaviconError(): void {
+    this.faviconError = true;
   }
 }

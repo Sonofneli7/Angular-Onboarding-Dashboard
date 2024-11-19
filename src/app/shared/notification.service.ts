@@ -14,4 +14,8 @@ export class NotificationService {
   show(message: string): void {
     this.notificationSubject.next(message);
   }
+
+  clear(): void {
+    this.notificationSubject.next(null); // Clear the notification
+  }
 }
