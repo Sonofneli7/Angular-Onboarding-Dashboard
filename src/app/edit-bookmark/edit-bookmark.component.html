@@ -1,6 +1,10 @@
 <div class="edit-bookmarks-wrapper">
+  <!-- Notification Display -->
+  <div *ngIf="notificationMessage" class="notification">
+    {{ notificationMessage }}
+  </div>
 
-    <p *ngIf="!bookmark">Bookmark not found</p>
+  <p *ngIf="!bookmark">Bookmark not found</p>
   <ng-container *ngIf="bookmark">
     <h2 class="is-bold">{{ bookmark.name }}</h2>
     <form
@@ -22,15 +26,13 @@
           minlength="3"
         />
         <div
-          *ngIf="
-            (showValidationErrors || nameField.touched) && nameField.errors
-          "
+          *ngIf="(showValidationErrors || nameField.touched) && nameField.errors"
           class="error-messages"
         >
           <span *ngIf="nameField.errors['required']">Name is required...</span>
-          <span *ngIf="nameField.errors['minlength']"
-            >Name must be at least 3 characters.</span
-          >
+          <span *ngIf="nameField.errors['minlength']">
+            Name must be at least 3 characters.
+          </span>
         </div>
       </div>
 
@@ -45,6 +47,7 @@
           placeholder="e.g. https://wdprhubsites.disney.com"
           required
           minlength="3"
+          pattern="https?://.+"
         />
         <div
           *ngIf="(showValidationErrors || urlField.touched) && urlField.errors"
@@ -52,12 +55,17 @@
         >
           <span *ngIf="urlField.errors['required']">URL is required...</span>
           <span *ngIf="urlField.errors['pattern']">URL must be valid.</span>
+          <span *ngIf="urlField.errors['minlength']">
+            URL must be at least 3 characters.
+          </span>
         </div>
       </div>
 
       <div class="btns-container">
         <a routerLink="../" class="btn">Cancel</a>
-        <button type="button" class="btn" (click)="deleteBookmark()">Delete</button>
+        <button type="button" class="btn" (click)="deleteBookmark()">
+          Delete
+        </button>
         <button type="submit" class="btn align-end">Save</button>
       </div>
     </form>

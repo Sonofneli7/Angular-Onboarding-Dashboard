@@ -5,6 +5,7 @@ import { Bookmark } from './shared/bookmark.model';
 import { RouterModule } from '@angular/router'; // <-- Import RouterModule
 import { TabsComponent } from './tabs/tabs.component';
 import { EditTodoComponent } from './edit-todo/edit-todo.component';
+import { NotificationComponent } from "./notification/notification.component";
 
 
 
@@ -12,7 +13,7 @@ import { EditTodoComponent } from './edit-todo/edit-todo.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, TabsComponent,EditTodoComponent],
+  imports: [RouterModule, TabsComponent, EditTodoComponent, NotificationComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

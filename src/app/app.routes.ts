@@ -14,7 +14,6 @@ import { AddBookmarkComponent } from './add-bookmark/add-bookmark.component';
 import { ManageBookmarksComponent } from './manage-bookmarks/manage-bookmarks.component';
 import { EditBookmarkComponent } from './edit-bookmark/edit-bookmark.component';
 
-
 // Define the routes
 export const routes: Routes = [
   { path: 'bookmarks', component: BookmarksComponent },
