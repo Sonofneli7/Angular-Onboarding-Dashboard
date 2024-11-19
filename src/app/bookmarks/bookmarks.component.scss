@@ -1,0 +1,31 @@
+.bookmarks-wrapper {
+    height: 100%;
+
+    overflow-y: auto;
+    
+}
+
+
+.bookmark-tiles-container{
+    display: flex;  // making bookmark tiles horizontal to each other
+    gap: 20px; // add spacing between
+    justify-content: center;
+
+    flex-wrap: wrap;
+    }
+
+    .btns-container {
+        display: flex;
+        justify-content: center; // Align buttons horizontally
+        gap: 15px; // Adjust spacing between buttons
+      }
+
+    .add-btn i{
+        margin-right: 5px;
+        margin-left: -3px;
+    }
+
+    .manage-btn i{
+        margin-right: 8px;
+        opacity: 0.9;
+    }
