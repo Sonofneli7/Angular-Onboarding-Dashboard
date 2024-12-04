@@ -14,6 +14,9 @@ import { Todo } from 'c:/Projects/New Projects/angular-onboarding-dashboard/src/
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
+onDrop($event: Event) {
+throw new Error('Method not implemented.');
+}
 
   todos: Todo[] = [];
 

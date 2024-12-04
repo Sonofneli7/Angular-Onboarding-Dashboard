@@ -1,132 +1,88 @@
-.todo-item{
-
-    position: relative;
-    display: flex;  //puts check and text on same line
-    align-items: center; 
-
-    background-color: rgba($color: black, $alpha: 0.5);
-    border-radius: 25px;
-
-    padding: 10px 12px; //up:down, left:right
-
-
-
+.todo-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
     cursor: pointer;
-
-}
-
-.todo-text{
-   color: rgba($color: white, $alpha: 0.85);
-}
-
-.check-box{ //designing the checkbox
-    padding: 4px;
-    border: 2px solid rgba($color: white, $alpha: 0.35);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  
+    &:hover {
+      background-color: #f0f0f0;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    }
+  
+    .todo-item-actions {
+      display: flex;
+      gap: 10px;
+      visibility: hidden; /* Hide by default */
+      opacity: 0; /* Make it invisible */
+      transition: visibility 0s 0.2s, opacity 0.2s ease-in-out; /* Delay visibility change */
+    }
+  
+    &:hover .todo-item-actions {
+      visibility: visible; /* Show on hover */
+      opacity: 1; /* Make it fully visible */
+      transition: opacity 0.2s ease-in-out;
+    }
+  }
+  
+  .todo-text {
+    color: #333;
+    font-size: 1.2rem;
+    font-family: 'Arial', sans-serif;
+    margin-left: 12px;
+    line-height: 1.6;
+    flex: 1;
+  }
+  
+  .check-box {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
     border-radius: 50%;
-
-    margin-right: 15px;
-
-    i{
-        font-size: 18px;
-        opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  
+    i {
+      font-size: 16px;
+      opacity: 0;
     }
-}
-
-
-
-.todo-item:hover{
-    .todo-text{
-        color: rgba($color: white, $alpha: 0.95);
+  
+    &:hover {
+      border-color: #999;
     }
-
-    .check-box{
-        border-color: transparent;
-        background-color: rgba($color: white, $alpha: 0.35);
+  }
+  
+  .todo-item.completed .check-box {
+    background-color: rgb(19, 218, 9);
+    border-color: transparent;
+  
+    i {
+      opacity: 1;
     }
-
-}
-
-.todo-item.completed{
-    .todo-text{
-        color: rgba($color: white, $alpha: 0.78);
+  }
+  
+  .todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  .todo-item-actions .todo-item-action-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+  
+    &:hover {
+      color: #007BFF; /* Highlight color on hover */
     }
-
-    .check-box{
-        background:rgb(218, 204, 9); // color for checkbox
-        border-color: transparent;
-
-        i{
-            opacity: 1;  // shows check box
-        }
-    }
-}
-
-.todo-text,
-.check-box{
-    transition: 0.12s;
-}
-
-
-// positioning edit/delete symbols
-.todo-item-actions{
-    position: absolute;
-    right: 5px;
-    top: 5px;
-
-
-    background: rgba(72, 72, 82, 0.85);
-    backdrop-filter: blur(2px);
-
-    box-shadow: 0px 4px 12px rgba($color: black, $alpha: 0.2);
-
-    border-radius: 20px;
-
-    transition: 0.2s;
-
-    
-
-    // Hide by default
-    visibility: hidden;
-    opacity: 0;
-    transform: scale(0.8);
-    
-}
-
-.todo-item-action-btn{
-    background: transparent;
-    padding: 10px;
-
-    border-radius: inherit;
-
-    &:first-child{
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        padding-left: 14px;
-    }
-
-    &:last-child{
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding-right: 13px;
-    }
-
-    &:hover{
-        background: rgba(50, 50, 53);
-
-    }
-}
-
-
-//adjustments for edit/delete symbols
-.todo-item-action-btn i{
-    font-size: 20px;
-
-}
-
-.todo-item:hover .todo-item-actions{
-    visibility: visible;
-    opacity: 1;
-
-    transition-delay: 0.5s;
-    transform: scale(1);
-}
+  }
+  

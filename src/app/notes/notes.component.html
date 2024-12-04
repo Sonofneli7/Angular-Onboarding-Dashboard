@@ -1,6 +1,10 @@
 <!-- Notes Template -->
 <div class="notes-wrapper">
   <div class="container">
+    <div class="notes-container">
+      <!-- To Do Title -->
+      <h1 class="notes-title">Notes</h1>
+    </div>
     <div class="notes-list">
       <!-- Loop through notes and pass each note to app-note-card, and make sure routerLink is correct -->
       <a [routerLink]="['/notes', note.id]" *ngFor="let note of notes">

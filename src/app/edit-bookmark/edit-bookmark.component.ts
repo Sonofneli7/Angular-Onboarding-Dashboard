@@ -52,10 +52,13 @@ export class EditBookmarkComponent implements OnInit {
         // Ensure URL is valid before updating
         const parsedUrl = new URL(url);  // This will throw if URL is invalid
 
-        // Update the bookmark in the service
+        // If url in the model is a string, convert URL object to string
+        const urlString = parsedUrl.toString(); // Convert to string if needed
+
+        // Update the bookmark in the service (ensure the service expects the correct type)
         this.bookmarkService.updateBookmark(this.bookmark.id, {
           name,
-          url: parsedUrl,
+          url: urlString,  // Pass the string version of URL
         });
 
         this.showNotification('Bookmark Updated Successfully!');

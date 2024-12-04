@@ -4,7 +4,26 @@
     overflow-y: auto;
     
 }
-
+.bookmarks-container {
+    display: flex;
+    justify-content: center; /* Centers the box horizontally */
+    align-items: center; /* Optional: centers content vertically */
+    flex-direction: column; /* Stacks content vertically (if needed) */
+    height: 100%; /* Adjust to fit your layout */
+  }
+  
+.bookmark-title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    padding: 10px 20px; /* Adds spacing inside the box */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+    border-radius: 8px; /* Rounds the corners of the box */
+    display: inline-block; /* Ensures the box fits the title content */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+  }
 
 .bookmark-tiles-container{
     display: flex;  // making bookmark tiles horizontal to each other
